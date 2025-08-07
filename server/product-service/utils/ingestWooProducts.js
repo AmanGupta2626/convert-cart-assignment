@@ -12,13 +12,14 @@ export const ingestWooProducts = async () => {
         per_page: 100
       }
     });
+    console.log('Fetched products from WooCommerce', response);
 
     const rawProducts = response.data;
 
     const formattedProducts = rawProducts.map(item => ({
       wooId: item.id,
       title: item.name,
-      price: parseFloat(item.price),
+      price: item.price && !isNaN(parseFloat(item.price)) ? parseFloat(item.price) : 0,
       stock_status: item.stock_status,
       stock_quantity: item.stock_quantity ?? 0,
       category: item.categories?.[0]?.name || '',
@@ -30,8 +31,8 @@ export const ingestWooProducts = async () => {
     await Product.deleteMany(); // optional: wipe existing
     await Product.insertMany(formattedProducts);
 
-    console.log(`✅ Ingested ${formattedProducts.length} products`);
+    console.log(`Ingested ${formattedProducts.length} products`);
   } catch (err) {
-    console.error('❌ WooCommerce ingestion failed:', err.message);
+    console.error('WooCommerce ingestion failed:', err.message);
   }
 };

@@ -4,7 +4,7 @@ import './App.css'
 const App = () => {
   return (
     <>
-    <div className="bg-blue-500 text-white p-4 rounded-lg">Hello World</div>
+    <div className="bg-blue-500 text-white p-4 rounded-lg">Hello Convert cart</div>
     
     </>
   )

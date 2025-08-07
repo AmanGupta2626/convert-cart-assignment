@@ -4,7 +4,4 @@ const router = express.Router();
 
 router.get('/', getAllProducts);
 
-// (Optional) Ingest WooCommerce products manually
-// router.post('/ingest', ingestWooProducts);
-
 export default router;
