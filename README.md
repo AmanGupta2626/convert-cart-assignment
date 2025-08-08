@@ -120,13 +120,37 @@ The Product Service ingestion process works as follows:
 - These stored products are later queried by the Segment Service for rule-based filtering.
 
 ```
+### 🐳 Running with Docker
+You can containerize and run both backend microservices using Docker and Docker Compose.
 
+## 1️⃣ Build the images
+```bash
+docker compose build
+```
+## This will build Docker images for:
+
+- Product Service (Node.js + MongoDB connection + WooCommerce integration)
+- Segment Service (Node.js + MongoDB connection)
+
+## 2️⃣ Start the containers
+
+**Run in attached mode (logs in terminal):**
+
+```bash
+docker compose up
+```
+**Or run in detached mode (background):**
+
+```bash
+docker compose up -d
+```
 
 ### 🐳 Deployment Notes
 Each microservice should be deployed separately (e.g., Render, Heroku, or Docker)
 Update frontend .env with deployed backend URLs
 
 ### 🌐 Live Demo Links
-- Frontend: https://your-frontend-url.com
+- Frontend: https://convert-cart-assignment-beta.vercel.app/
 - Product Service : https://product-service-9w3j.onrender.com
 - Segment Service : https://segment-service.onrender.com
+- Swagger : 

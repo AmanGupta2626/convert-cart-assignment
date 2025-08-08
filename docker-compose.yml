@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  product-service:
+    build:
+      context: ./server/product-service
+      dockerfile: Dockerfile
+    ports:
+      - "4000:4000"
+    env_file:
+      - ./server/product-service/.env
+
+  segment-service:
+    build:
+      context: ./server/segment-service
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./server/segment-service/.env
