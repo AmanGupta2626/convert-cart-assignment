@@ -94,12 +94,12 @@ Runs at: http://localhost:5000
 
 ## 📡 API Endpoints
 ##  Product Service : Returns all products
-```http 
+``` 
     GET /api/products  
 ```
 
 ## Segment Service : Returns filtered products based on rules
-```http 
+```
    POST /api/segments/evaluate
 ```
 - Example Request :
@@ -109,7 +109,7 @@ Runs at: http://localhost:5000
 }
 ```
 ### 📜 Description of Ingestion Logic
-```http
+```
 The Product Service ingestion process works as follows:
 
 - On API call (or scheduled cron job in future), it requests product data from the WooCommerce REST API using provided API keys.
