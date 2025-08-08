@@ -31,7 +31,7 @@ export const ingestWooProducts = async () => {
     await Product.deleteMany(); // optional: wipe existing
     await Product.insertMany(formattedProducts);
 
-    console.log(`Ingested ${formattedProducts.length} products`);
+    // console.log(`Ingested ${formattedProducts.length} products`);
   } catch (err) {
     console.error('WooCommerce ingestion failed:', err.message);
   }
