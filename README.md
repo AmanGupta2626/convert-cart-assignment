@@ -112,7 +112,7 @@ Runs at: http://localhost:5000
 ```
 The Product Service ingestion process works as follows:
 
-- On API call (or scheduled cron job in future), it requests product data from the WooCommerce REST API using provided API keys.
+- On API call , it requests product data from the WooCommerce REST API using provided API keys.
 - It maps WooCommerce fields (e.g., id, name, price, stock_status) to the MongoDB Product schema.
 - Prices are converted from string to number and stock statuses are validated against the allowed enum values (instock, outofstock, onbackorder).
 - Existing products in the database are cleared (optional) to ensure data freshness.
@@ -153,4 +153,3 @@ Update frontend .env with deployed backend URLs
 - Frontend: https://convert-cart-assignment-beta.vercel.app/
 - Product Service : https://product-service-9w3j.onrender.com
 - Segment Service : https://segment-service.onrender.com
-- Swagger : 
