@@ -152,4 +152,6 @@ Update frontend .env with deployed backend URLs
 ### 🌐 Live Demo Links
 - Frontend: https://convert-cart-assignment-beta.vercel.app/
 - Product Service : https://product-service-9w3j.onrender.com
+- Product Service Swagger API Docs: https://product-service-9w3j.onrender.com/api-docs/
 - Segment Service : https://segment-service.onrender.com
+- Segment Service Swagger API Docs: https://segment-service.onrender.com/api-docs/
