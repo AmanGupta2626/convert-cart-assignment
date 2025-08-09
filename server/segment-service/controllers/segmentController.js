@@ -1,5 +1,116 @@
 import Product from '../models/productModel.js';
-
+/**
+ * @swagger
+ * tags:
+ *   name: Segments
+ *   description: Product segment evaluation operations
+ * 
+ * @swagger
+ * /api/segments/evaluate:
+ *   post:
+ *     summary: Find products matching multiple segment rules
+ *     description: |
+ *       Evaluates products against multiple rules (one per line).
+ *       Supported operators: =, >, <, >=, <=
+ *       Supported fields: price, stock_status, stock_quantity, on_sale, category, tags, title
+ *     tags: [Segments]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - rules
+ *             properties:
+ *               rules:
+ *                 type: string
+ *                 description: |
+ *                   Multi-line rules to evaluate (one rule per line).
+ *                   Example: 
+ *                   "price > 1000
+ *                   stock_status = instock
+ *                   category = Electronics"
+ *                 example: |
+ *                   price > 1000
+ *                   stock_status = instock
+ *                   on_sale = true
+ *     responses:
+ *       200:
+ *         description: Array of matching products
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Product'
+ *       400:
+ *         description: Invalid rule format
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "Invalid rule format: 'price >> 100'. Expected format: field operator value"
+ *       404:
+ *         description: No products found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "No products found matching the segment rules"
+ *       500:
+ *         description: Server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "Failed to evaluate segment"
+ * 
+ * components:
+ *   schemas:
+ *     Product:
+ *       type: object
+ *       properties:
+ *         _id:
+ *           type: string
+ *           example: "5f8d0d55b54764421b7160f0"
+ *         name:
+ *           type: string
+ *           example: "Premium Laptop"
+ *         price:
+ *           type: number
+ *           example: 1499.99
+ *         stock_status:
+ *           type: string
+ *           enum: [instock, outofstock, onbackorder]
+ *           example: "instock"
+ *         stock_quantity:
+ *           type: integer
+ *           example: 15
+ *         on_sale:
+ *           type: boolean
+ *           example: false
+ *         category:
+ *           type: string
+ *           example: "Electronics"
+ *         tags:
+ *           type: array
+ *           items:
+ *             type: string
+ *           example: ["laptop", "premium"]
+ *         title:
+ *           type: string
+ *           example: "UltraBook Pro"
+ */
 export const evaluateSegment = async (req, res) => {
   const { rules } = req.body;
 
